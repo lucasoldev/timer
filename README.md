@@ -1,4 +1,5 @@
-```markdown
+---
+
 # ⏱️ Presentation Timer
 
 <p align="center">
@@ -64,7 +65,7 @@ This project is a **self-hosted presentation timer** that lets you control count
           │              Python Backend                      │
           └──────────────────┬───────────────────────────────┘
                              │
-                   ┌─────────▼─────────┐
+                   ┌─────────▼──────────┐
                    │   FastAPI Server   │
                    │   + Socket.IO      │
                    │   + Jinja2         │
@@ -89,7 +90,7 @@ This project is a **self-hosted presentation timer** that lets you control count
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/presentation-timer.git
+git clone https://github.com/lucasoldev/presentation-timer.git
 cd presentation-timer
 
 # Install dependencies
@@ -102,15 +103,15 @@ python server.py
 ### Usage
 
 **1. Open the Control Panel**
-```
+
 http://localhost:8000/controller
-```
+
 Click **"New"** to generate a session ID.
 
 **2. Open the Speaker Display**
-```
+
 http://localhost:8000/display?session=YOUR_SESSION_ID
-```
+
 Replace `YOUR_SESSION_ID` with the ID from step 1.
 
 **3. Control the timer from the panel** — all changes appear instantly on the display.
@@ -221,7 +222,7 @@ presentation-timer/
 
 ## 🔧 Dependencies
 
-```txt
+```
 fastapi==0.104.1
 uvicorn[standard]==0.24.0
 jinja2==3.1.2
@@ -275,19 +276,18 @@ This project is licensed under the **MIT License** — feel free to use, modify,
 ---
 
 <p align="center">
-  <strong>Built with 🐍 Python and ❤️</strong><br>
+  <strong>Built with 🐍 Python and ❤️</strong><br><br>
   ⭐ Star this repo if you found it useful!
 </p>
-```
 
-## O que estava errado:
+---
 
-| Problema | Correção |
-|----------|----------|
-| Diagrama ASCII sem ``` | Adicionado ``` antes e depois |
-| Código Python sem ```python | Adicionado ```python |
-| Estrutura de pastas sem ``` | Adicionado ``` |
-| Dependências sem ```txt | Adicionado ```txt |
-| Faltavam `##` nos títulos | Adicionados `##` e `###` |
-| Roadmap sem `- [ ]` | Adicionado formato de checklist |
-| Lista de acknowledgments sem `-` | Adicionado bullets |
+Agora sim! Copie **todo o conteúdo acima** e cole diretamente no seu arquivo `README.md`. O GitHub vai renderizar corretamente com:
+
+- ✅ Badges coloridos
+- ✅ Tabelas formatadas
+- ✅ Código com syntax highlighting
+- ✅ Diagramas ASCII
+- ✅ Links internos funcionando
+- ✅ Checklists
+- ✅ Emojis
