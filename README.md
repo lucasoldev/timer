@@ -1,68 +1,89 @@
-Aqui está o README em inglês para o seu projeto:
-
 ```markdown
 # ⏱️ Presentation Timer
 
-A real-time presentation timer built with **Python**, inspired by [Stagetimer.io](https://stagetimer.io). Control countdowns, send messages to speakers, and customize colors — all through a clean web interface.
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.9+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/FastAPI-0.104-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI">
+  <img src="https://img.shields.io/badge/Socket.IO-Real--time-010101?style=for-the-badge&logo=socket.io&logoColor=white" alt="Socket.IO">
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License">
+</p>
 
-> **Why Python?** Stagetimer.io is a fantastic tool, but I wanted to build my own version using Python to have full control over the backend, understand real-time communication patterns, and create a self-hosted solution.
+<p align="center">
+  <strong>A real-time presentation timer built with Python, inspired by Stagetimer.io</strong>
+</p>
 
+<p align="center">
+  <a href="#-features">Features</a> •
+  <a href="#-quick-start">Quick Start</a> •
+  <a href="#-configuration">Configuration</a> •
+  <a href="#-architecture">Architecture</a>
+</p>
+
+---
+
+## 📖 About
+
+This project is a **self-hosted presentation timer** that lets you control countdowns, send messages to speakers, and customize alert colors — all through a clean web interface.
+
+> **Why Python?** [Stagetimer.io](https://stagetimer.io) is a fantastic tool, but I wanted to build my own version using Python to have full control over the backend, understand real-time communication patterns, and create a self-hosted solution.
+
+---
 
 ## ✨ Features
 
-- **Real-time countdown** — Start, pause, reset timers with instant updates via WebSocket
-- **Dual interface** — Separate Control Panel and Speaker Display views
-- **Color-coded alerts** — Timer automatically changes color based on remaining time:
-  - 🟢 Green — Plenty of time
-  - 🟡 Yellow — Warning threshold
-  - 🔴 Red — Danger zone  
-  - ⬛ Expired — Time's up
-- **Customizable thresholds** — Set when colors change (in minutes)
-- **Custom colors** — Pick any color for each time zone via color pickers
-- **Speaker messages** — Send real-time messages that appear on the display, inheriting the timer's current color
-- **Time presets** — Quick-select buttons for common durations (3, 5, 10, 15, 20, 30, 45, 60 minutes)
-- **Add extra time** — Quickly add +1 or +5 minutes during a presentation
-- **Progress bar** — Visual indicator of elapsed vs remaining time
-- **Auto alerts** — Audio/visual warnings at 60s, 30s, and 10s remaining
-- **Session-based** — Multiple concurrent timers via unique session IDs
-- **Dark theme** — Clean, modern dark UI for both controller and display
-- **Responsive** — Works on desktop, tablet, and mobile browsers
+| Feature | Description |
+|---------|-------------|
+| 🔄 **Real-time sync** | Start, pause, reset timers with instant WebSocket updates |
+| 🖥️ **Dual interface** | Separate Control Panel and Speaker Display views |
+| 🎨 **Color-coded alerts** | Timer changes color automatically: Green → Yellow → Red → Expired |
+| ⚙️ **Customizable thresholds** | Set exactly when colors change (in minutes) |
+| 🎯 **Custom colors** | Pick any color for each time zone via color pickers |
+| 💬 **Speaker messages** | Send real-time messages that inherit the timer's current color |
+| ⏱️ **Time presets** | Quick-select buttons: 3, 5, 10, 15, 20, 30, 45, 60 min |
+| ➕ **Add extra time** | Quickly add +1 or +5 minutes during a presentation |
+| 📊 **Progress bar** | Visual indicator of elapsed vs remaining time |
+| 🔔 **Auto alerts** | Audio/visual warnings at 60s, 30s, and 10s remaining |
+| 🔗 **Session-based** | Multiple concurrent timers via unique session IDs |
+| 🌙 **Dark theme** | Clean, modern dark UI for both controller and display |
+| 📱 **Responsive** | Works on desktop, tablet, and mobile browsers |
 
+---
 
 ## 🎥 How It Works
 
 ```
 ┌─────────────────────┐         WebSocket         ┌─────────────────────┐
-│   CONTROL PANEL     │ ◄──────────────────────►  │   SPEAKER DISPLAY   │
-│   (Controller)      │     Real-time updates     │   (Fullscreen)      │
-│                     │                           │                     │
+│   CONTROL PANEL     │◄─────────────────────────►│   SPEAKER DISPLAY   │
+│                     │     Real-time updates     │                     │
 │  • Start/Pause      │                           │  • Large timer      │
 │  • Set time         │                           │  • Color changes    │
 │  • Send messages    │                           │  • Messages         │
 │  • Configure colors │                           │  • Progress bar     │
-└─────────────────────┘                           └─────────────────────┘
-          │                                                 │
+└─────────┬───────────┘                           └──────────┬──────────┘
+          │                                                  │
           │              Python Backend                      │
-          └──────────────┬──────────────────────────────────┘
-                         │
-               ┌─────────▼─────────┐
-               │   FastAPI Server   │
-               │   + Socket.IO      │
-               │   + Jinja2         │
-               │                    │
-               │  TimerManager      │
-               │  • Countdown logic │
-               │  • Color logic     │
-               │  • Session mgmt    │
-               └────────────────────┘
+          └──────────────────┬───────────────────────────────┘
+                             │
+                   ┌─────────▼─────────┐
+                   │   FastAPI Server   │
+                   │   + Socket.IO      │
+                   │   + Jinja2         │
+                   │                    │
+                   │  TimerManager      │
+                   │  • Countdown logic │
+                   │  • Color logic     │
+                   │  • Session mgmt    │
+                   └────────────────────┘
 ```
 
+---
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 
-- Python 3.9+
+- **Python 3.9** or higher
+- **pip** (Python package manager)
 
 ### Installation
 
@@ -74,21 +95,31 @@ cd presentation-timer
 # Install dependencies
 pip install -r requirements.txt
 
-# Run the server
+# Start the server
 python server.py
 ```
 
 ### Usage
 
-1. Open the **Control Panel**: [http://localhost:8000/controller](http://localhost:8000/controller)
-2. Click **"New"** to generate a session ID
-3. Open the **Speaker Display**: [http://localhost:8000/display?session=YOUR_SESSION_ID](http://localhost:8000/display?session=YOUR_SESSION_ID)
-4. Control the timer from the panel — changes appear instantly on the display
+**1. Open the Control Panel**
+```
+http://localhost:8000/controller
+```
+Click **"New"** to generate a session ID.
 
+**2. Open the Speaker Display**
+```
+http://localhost:8000/display?session=YOUR_SESSION_ID
+```
+Replace `YOUR_SESSION_ID` with the ID from step 1.
+
+**3. Control the timer from the panel** — all changes appear instantly on the display.
+
+---
 
 ## 🛠️ Configuration
 
-All default settings are in `server.py`, inside the `TimerManager` class. Everything is configured in **minutes**:
+All default settings are in `server.py`, inside the `TimerManager` class. **Everything is configured in minutes:**
 
 ```python
 class TimerManager:
@@ -96,20 +127,20 @@ class TimerManager:
     DEFAULT_TOTAL_MINUTES = 5          # Total timer duration
     DEFAULT_WARNING_MINUTES = 2        # When timer turns yellow
     DEFAULT_DANGER_MINUTES = 1         # When timer turns red
-    
+
     # 🎨 DEFAULT COLORS
     DEFAULT_COLORS = {
-        'normal': '#00ff00',           # Green
-        'warning': '#ffaa00',          # Yellow/Orange
-        'danger': '#ff4444',           # Light Red
-        'expired': '#ff0000',          # Strong Red
+        'normal': '#00ff00',           # Green - plenty of time
+        'warning': '#ffaa00',          # Yellow/orange - attention
+        'danger': '#ff4444',           # Light red - danger zone
+        'expired': '#ff0000',          # Strong red - time's up
     }
-    
-    # 🎯 TIME PRESETS (available quick-select buttons)
+
+    # 🎯 TIME PRESETS (quick-select buttons)
     TIME_PRESETS = [3, 5, 10, 15, 20, 30, 45, 60]
 ```
 
-**Examples:**
+### Quick Examples
 
 ```python
 # 10-minute timer, yellow at 3min, red at 1min
@@ -123,45 +154,47 @@ DEFAULT_WARNING_MINUTES = 5
 DEFAULT_DANGER_MINUTES = 2
 ```
 
+---
 
 ## 🏗️ Architecture
 
 ```
 presentation-timer/
-├── server.py                 # Main server application
+├── server.py                 # Main server (FastAPI + Socket.IO)
 ├── requirements.txt          # Python dependencies
 ├── templates/
 │   ├── base.html             # Base HTML template
 │   ├── home.html             # Landing page
 │   ├── controller.html       # Control panel (minimal JS)
-│   └── display.html          # Speaker display (minimal JS)
+│   └── display.html          # Speaker display (fullscreen)
 └── static/
     └── style.css             # All styles (dark theme)
 ```
 
 ### Tech Stack
 
-| Layer | Technology | Purpose |
-|-------|-----------|---------|
-| **Backend** | Python 3.9+ | Core logic |
-| **Web Framework** | FastAPI | HTTP routes, static files |
+| Layer | Technology | Why |
+|-------|-----------|-----|
+| **Backend** | Python 3.9+ | Core timer logic, session management |
+| **Web Framework** | FastAPI | Fast, modern, async support |
 | **Templates** | Jinja2 | Server-side HTML rendering |
-| **Real-time** | Socket.IO (python-socketio) | WebSocket communication |
+| **Real-time** | python-socketio | WebSocket communication |
 | **Frontend JS** | Minimal vanilla JS | Only Socket.IO client + DOM updates |
-| **Styling** | CSS3 | Dark theme, responsive |
+| **Styling** | CSS3 | Dark theme, responsive, animations |
 
-### Design Decisions
+### Design Philosophy
 
-- **95% Python** — All timer logic, color calculations, data formatting, and countdown happens server-side
-- **Server-rendered HTML** — Jinja2 templates with template inheritance
-- **Minimal JavaScript** — Browser only handles Socket.IO connection and DOM updates
+- **95% Python** — All timer logic, color calculations, and countdown run server-side
+- **Server-rendered HTML** — Jinja2 with template inheritance
+- **Minimal JavaScript** — Only for WebSocket connection and DOM manipulation
 - **Minutes-based config** — All settings use minutes (converted to seconds internally)
 - **Session isolation** — Each session ID creates an independent timer
 
+---
 
-## 🔌 API / Socket.IO Events
+## 🔌 API Reference (Socket.IO Events)
 
-### Client → Server (Controller emits)
+### Client → Server
 
 | Event | Payload | Description |
 |-------|---------|-------------|
@@ -170,13 +203,13 @@ presentation-timer/
 | `start_timer` | `{session_id}` | Starts the countdown |
 | `pause_timer` | `{session_id}` | Pauses the countdown |
 | `reset_timer` | `{session_id}` | Resets to total time |
-| `set_timer` | `{session_id, minutes}` | Sets timer duration |
-| `add_time` | `{session_id, minutes}` | Adds extra time |
+| `set_timer` | `{session_id, minutes}` | Sets timer duration (in minutes) |
+| `add_time` | `{session_id, minutes}` | Adds extra time (in minutes) |
 | `send_message` | `{session_id, message}` | Sends message to display |
 | `update_color_config` | `{session_id, colors}` | Updates color scheme |
-| `update_time_thresholds` | `{session_id, warning_time, danger_time}` | Updates alert times |
+| `update_time_thresholds` | `{session_id, warning_time, danger_time}` | Updates alert thresholds (in minutes) |
 
-### Server → Client (Broadcast)
+### Server → Client
 
 | Event | Payload | Description |
 |-------|---------|-------------|
@@ -184,81 +217,11 @@ presentation-timer/
 | `session_created` | `{session_id}` | New session ID |
 | `time_alert` | `{message}` | Alert notification |
 
-
-## 🎨 Customization
-
-### Changing Colors (via UI)
-1. Connect to a session
-2. Go to **Color & Alert Settings** → **Colors** tab
-3. Use color pickers for each zone
-4. Click **Apply Colors**
-
-### Changing Alert Times (via UI)
-1. Go to **Color & Alert Settings** → **Alert Times** tab
-2. Set Warning and Danger thresholds
-3. Click **Apply Alert Times**
-
-### Changing Defaults (in code)
-Edit the class variables in `TimerManager` (see [Configuration](#-configuration) section above).
-
-
-## 📱 Screenshots
-
-### Control Panel
-```
-┌─────────────────────────────────────────┐
-│  ⏱️ Timer Control          🟢 Connected │
-├─────────────────────────────────────────┤
-│  📡 Session                             │
-│  [Session ID...] [Connect] [+ New]     │
-├─────────────────────────────────────────┤
-│  ⏱️ Time                                │
-│  [3min] [5min] [10min] [15min] ...     │
-├─────────────────────────────────────────┤
-│  🎨 Color & Alert Settings              │
-│  [Colors] [Alert Times]                 │
-│  🟢 Normal  🟡 Warning                  │
-│  🔴 Danger  ⏰ Expired                  │
-├─────────────────────────────────────────┤
-│  🎮 Controls                            │
-│  [▶ Start] [⏸ Pause] [↺ Reset]        │
-│  [+1 min] [+5 min]                      │
-├─────────────────────────────────────────┤
-│  💬 Message to Speaker                  │
-│  [Type message...] [Send]              │
-├─────────────────────────────────────────┤
-│  👁️ Speaker Preview                     │
-│  ┌─────────────────────────────────┐    │
-│  │  ● ● ●  DISPLAY                 │    │
-│  │                                 │    │
-│  │          05:00                   │    │
-│  │     ════════════════            │    │
-│  │                                 │    │
-│  │        ⏸ Paused                 │    │
-│  └─────────────────────────────────┘    │
-└─────────────────────────────────────────┘
-```
-
-### Speaker Display
-```
-┌─────────────────────────────────────────┐
-│                                         │
-│                                         │
-│              05:00                      │
-│          ════════════════               │
-│                                         │
-│       "5 minutes remaining"             │
-│                                         │
-│           ⏸ Paused                      │
-│                                         │
-│                          ID: ABC123     │
-└─────────────────────────────────────────┘
-```
-
+---
 
 ## 🔧 Dependencies
 
-```
+```txt
 fastapi==0.104.1
 uvicorn[standard]==0.24.0
 jinja2==3.1.2
@@ -266,61 +229,65 @@ python-socketio==5.10.0
 websockets==12.0
 ```
 
+---
 
-## 🤔 Why This Project?
-
-[Stagetimer.io](https://stagetimer.io) is an excellent tool for managing presentation timers — it has a polished UI, great features, and real-time sync. I wanted to:
-
-1. **Understand the architecture** behind real-time timer applications
-2. **Build it in Python** to leverage FastAPI + Socket.IO instead of Node.js
-3. **Have full control** over the backend logic and deployment
-4. **Self-host** for events where internet access might be unreliable
-5. **Learn** real-time communication patterns with WebSockets
-
-This is **not** a clone or competitor — it's a learning project that solves the same problem with a different tech stack.
-
-
-## 📝 Future Improvements
+## 📝 Roadmap
 
 - [ ] User authentication (admin vs viewer roles)
-- [ ] Multiple timers in a single session (e.g., talk + Q&A)
-- [ ] Session persistence (Redis/PostgreSQL)
-- [ ] Export timer logs/history
+- [ ] Multiple timers in a single session (talk + Q&A)
+- [ ] Session persistence with Redis/PostgreSQL
+- [ ] Export timer history and logs
 - [ ] OBS Studio integration (browser source)
-- [ ] QR code for easy display access
-- [ ] Custom audio alerts
-- [ ] Docker image for easy deployment
+- [ ] QR code generation for easy display access
+- [ ] Custom audio alerts (upload MP3)
+- [ ] Docker image for one-click deployment
 - [ ] PWA support for mobile control
-- [ ] Keyboard shortcuts for common actions
-
-
-## 📄 License
-
-MIT License — feel free to use, modify, and distribute.
-
-
-## 🙏 Acknowledgments
-
-- [Stagetimer.io](https://stagetimer.io) — inspiration for this project
-- [FastAPI](https://fastapi.tiangolo.com/) — the amazing Python web framework
-- [Socket.IO](https://socket.io/) — real-time communication made easy
-- [Jinja2](https://jinja.palletsprojects.com/) — powerful templating engine
-
+- [ ] Keyboard shortcuts (Space to play/pause, R to reset)
 
 ---
 
-**Built with 🐍 Python and ❤️**
+## 🤔 Inspiration
+
+[**Stagetimer.io**](https://stagetimer.io) is an excellent tool for managing presentation timers — polished UI, great features, real-time sync. This project was built to:
+
+- Understand the architecture behind real-time timer applications
+- Build it in Python using FastAPI + Socket.IO (instead of Node.js)
+- Have full control over the backend logic and self-hosting
+- Learn WebSocket communication patterns
+
+> This is a **learning project** — not a clone or competitor. Same problem, different tech stack.
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** — feel free to use, modify, and distribute.
+
+---
+
+## 🙏 Acknowledgments
+
+- [Stagetimer.io](https://stagetimer.io) — the inspiration
+- [FastAPI](https://fastapi.tiangolo.com/) — the Python web framework
+- [Socket.IO](https://socket.io/) — real-time made simple
+- [Jinja2](https://jinja.palletsprojects.com/) — powerful templating
+
+---
+
+<p align="center">
+  <strong>Built with 🐍 Python and ❤️</strong><br>
+  ⭐ Star this repo if you found it useful!
+</p>
 ```
 
-Esse README cobre:
-- ✅ Explicação do propósito (inspirado no Stagetimer.io)
-- ✅ Por que Python
-- ✅ Features completas
-- ✅ Quick start
-- ✅ Configuração clara
-- ✅ Arquitetura do projeto
-- ✅ Documentação da API/Socket.IO
-- ✅ Screenshots ASCII
-- ✅ Dependências
-- ✅ Melhorias futuras
-- ✅ Agradecimentos ao Stagetimer.io
+## O que estava errado:
+
+| Problema | Correção |
+|----------|----------|
+| Diagrama ASCII sem ``` | Adicionado ``` antes e depois |
+| Código Python sem ```python | Adicionado ```python |
+| Estrutura de pastas sem ``` | Adicionado ``` |
+| Dependências sem ```txt | Adicionado ```txt |
+| Faltavam `##` nos títulos | Adicionados `##` e `###` |
+| Roadmap sem `- [ ]` | Adicionado formato de checklist |
+| Lista de acknowledgments sem `-` | Adicionado bullets |
