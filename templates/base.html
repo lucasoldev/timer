@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Presentation Timer{% endblock %}</title>
+    <link rel="stylesheet" href="/static/style.css">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    {% block content %}{% endblock %}
+    
+    <!-- Socket.IO (minimal JS) -->
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Presentation Timer - Home{% endblock %}
+
+{% block content %}
+<div class="home-container">
+    <div class="home-card">
+        <div class="home-icon">⏱️</div>
+        <h1>Presentation Timer</h1>
+        <p class="home-subtitle">Real-time time management for speakers and presentations</p>
+        
+        <div class="home-buttons">
+            <a href="/controller" class="home-btn controller-btn">
+                <span class="btn-icon">🎮</span>
+                <span>
+                    <strong>Control Panel</strong>
+                    <small>Manage timer and send messages</small>
+                </span>
+            </a>
+            
+            <a href="/display" class="home-btn display-btn">
+                <span class="btn-icon">🖥️</span>
+                <span>
+                    <strong>Speaker Display</strong>
+                    <small>Fullscreen timer view</small>
+                </span>
+            </a>
+        </div>
+        
+        <div class="home-footer">
+            <p>🐍 100% Python + Jinja2</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
